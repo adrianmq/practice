@@ -1,1 +1,3 @@
-react/tutorial/node_modules/
+javascript/react-tutorial/node_modules/
+**/node_modules/*
+*/node_modules
