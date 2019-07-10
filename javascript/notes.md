@@ -88,10 +88,105 @@
     https://en.wikipedia.org/wiki/Memoization
     - the process of caching the result of function calls
 
-### Package manager: yarn vs npm
+### Package manager
+    npm
+    yarn
 
 ### Bundler: webpack vs parcel
     - lets you write modular code and bundle it together into small packages to optimize load time
 
+
 ### Compiler: Babel
     - modern Javascript code that still works in old browsers
+
+
+### Client side storage
+# Cookies
+    - obsolete, assorted security problems, small amount of data, EU regulation
+# Web Storage
+    - simple syntax for storing and retrieving smaller, data items consisting of name and a corresponding value
+    - useful for simple data
+    - object-like structures
+    - separate storage for each domain
+    # sesstionStorage: persists data as long as the browser is open
+    # localStorage: long term persistance
+# IndexedDB API
+    - complete database system for storing complex data
+# Cache API
+    - designed for storing HTTP responses to specific requests, storing website assets offline
+# Service Worker API
+    - javascript file registered against a particular origin
+    - when registered, it controls pages available at that origin
+    - sits between a loaded page and the network and intercepts network requests aimed at that origin
+    - support for offline usage
+
+
+
+
+#
+## CSS
+# Documentation
+https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/How_CSS_works
+
+# Details
+- load html -> parse html -> create DOM tree -> display
+        -> load css -> parse css />
+
+- about DOM
+- external / internal / inline
+- css rule = ruleset = declaration = selector + declaration block ( property + value )
+- css US spelling standard
+- statement types:
+    - rules
+    - at-rules:
+        - @charset + @import (metadata)
+        - @font-face (descriptive information)
+    - nested:
+        - subset of at-rules
+        - @media or @document (conditional information, nested statements)
+- shorthand: font, background, padding, border, margin
+- selector matches html elements on the page, associated declarations will be appplied to those elements only
+- selectors:
+    - match multiple elements by including multiple selectors separated by comma
+    - an element may be matched by several selectors, therefore several rules may set a given property multiple times
+    - selector precedence and order of application (cascade algorithm) is defined by following factors:
+        - importance
+            - !important
+            - to override another declaration should be included later with the same specificity
+        - specificity
+            - how specific a selector is and is measured using 4 different values
+                - thousands: inline style
+                - hundreds: ID selector
+                - tens: class selector, attribute selector, or pseudo-class selector
+                - ones: one in this column for each element selector or pseudo-element selector
+            - universal selector (*), combinators (+, >, ~, ' ') and negation pseudo-class (:not) have no effect on specificity
+        - source order
+            - later rule wins over earlier rules
+    - precendece rules apply at property level
+    - inheritance (inherit, initial, unset, revert)
+    - types:
+        - simple: element, class, id
+        - attribute selector:
+            - presence and value: [attr], [attr=val], [attr~=val]
+            - substring value: [attr^=val], [attr$=val], [attr*=val]
+        - pseudo-classes: elements in certain state
+            - :active, :hover, etc.
+            - https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Pseudo-classes_and_pseudo-elements
+        - pseudo-elements: certain position in relation to an element
+            - ::after, ::before, etc.
+        - combinators:
+            - list / descendant / child / adjacent sibling / general sibling
+            - https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Combinators_and_multiple_selectors
+        - mutiple selectors
+- values:
+    - pixels: absolute units
+    - relative units (font-size or viewport): em, rem
+    - percentages
+    - https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Values_and_units
+- box model: content(width+height) + padding + border + margin
+    - overflow: auto, hidden, visible
+- layout: positioning, etc
+    https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Introduction
+
+
+
