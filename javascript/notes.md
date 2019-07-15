@@ -122,6 +122,74 @@
 
 
 
+### Architectural Patterns
+# Documentation
+https://blog.cloudboost.io/the-state-of-web-applications-3f789a18b810
+
+# MVVM, 2-way binding
+    - Angular, Vue
+    - Model View View-Model
+        - View <= data biding => View-Model <- read, write -> Model
+        - Each DOM node is interested in a certain part of the model (only part of the app state). By binding each element to its responsible part of the model (View-Model layer), it can directly listen to change of (read) / update (write) its part of the model
+        - In context of SPA, we could say Model=App State, V=Html template
+    - Advantages:
+        - separation of concerns: business logic (Model) from presentational layer (View)
+        - allows fast model manipulation of data model, which is ideal for CRUD based apps
+    - Task based apps, should have read-only / write-only UI-Components; while it is possible to create 2-way binding for each of these components, the excess 'pathways' for mutating the same part of a data model leads to chaos of state management (CQRS pattern is recommended)
+
+# CQRS (Command Query Responsibility Segregation)
+    - query (read), command (write) should be done separately
+    - Angular service is good example of applying CQRS pattern:
+        - private variables storing the items in question
+        - public getters (query) and setters (command) as separate methods
+
+# Event bus, 1-way binding, middleman like pattern
+    - React
+    - components can send messages to the event bus when an event occurs
+    - components can subscribe to the event bus for events they concern
+    - the event bus will send messages to subscribers whenever it receives one
+    - the component is not directly read-write bound to the model, instead it subscribes to part of the model to read and emits to 'state handler' to write rather than writing by itself
+    - 
+
+# Flux pattern
+
+
+### Redux
+# Documentation
+https://medium.com/@bretcameron/a-beginners-guide-to-redux-with-react-50309ae09a14
+
+    Boilerplate = sections of code that have to be included in many places with little or no alteration
+
+    Payload = the conventional name used for the property that holds tha actual data in a Redux action object.
+        A payload isn't necessary, but it's fairly common to see actions defined like this:
+        ```
+        const ADD_USER = {
+            type: "ADD_USER",
+            payload: {name: "John", age: 45}
+        }
+        ```
+    Middleware = in general, clues together clietn-side and server-side code, allowing (back-end) developers
+        to implement logic upon the request made from the client . In Redux, middleware provides a way to interact with actions that have been dispatched to the store before they reach the store's reducer.
+
+    File structure:
+        src:
+            actions
+                actionTypes.js
+                actionGroup1.js
+                actionGroup2.js
+            components
+                Component1.js
+                Component2.js
+            reducers
+                index.js
+                reducerGroup1.js
+                reducerGroup2.js
+            store.js
+            index.js
+            App.js
+            App.css
+
+    
 
 #
 ## CSS
