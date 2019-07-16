@@ -1,6 +1,7 @@
 import React from 'react'
 import { Route, Link } from 'react-router-dom'
-import ReduxCounter from './ReduxCounter'
+import ReduxCounter from './Counter'
+import ReduxTodo from './Todo'
 
 
 const Hidden = () => (
@@ -29,6 +30,7 @@ function BasicRouter() {
       <Route path='/about' component={About} />
       <Route path='/topics' component={Topics} />
       <Route path='/redux-counter' component={ReduxCounter} />
+      <Route path='/redux-todos' component={ReduxTodo} />
       <Route path='/no-link' component={Hidden} />
     </div>
   )

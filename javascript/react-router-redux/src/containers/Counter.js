@@ -1,9 +1,8 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import ReduxCounter from '../components/ReduxCounter'
-import { ADD_ONE, MINUS_ONE } from '../actions/type'
-import { addOne, minusOne, minusOneAsync } from '../actions'
+import ReduxCounter from '../components/Counter'
+import { addOne, minusOne, minusOneAsync } from '../actions/ui'
 
 
 class ReduxCounterContainer extends React.Component {

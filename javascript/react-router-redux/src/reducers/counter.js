@@ -1,11 +1,11 @@
-import { ADD_ONE, MINUS_ONE } from '../actions/type'
+import { ADD_ONE, MINUS_ONE } from '../actions/ui/type'
 
 
 const initialState = {
   value: 0
 }
 
-function CounterReducer(counterState = initialState, action) {
+function counterReducer(counterState = initialState, action) {
   switch (action.type) {
     case ADD_ONE:
       return {
@@ -22,4 +22,4 @@ function CounterReducer(counterState = initialState, action) {
   }
 }
 
-export default CounterReducer
+export default counterReducer

@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
-import ReduxCounterContainer from '../containers/ReduxCounter'
+import ReduxCounterContainer from '../containers/Counter'
+import VisibleTodoList from '../containers/Todo'
 import { Home, About, Topics, Hidden } from '../components/Bulk'
 import "./App.css";
 
@@ -23,12 +24,16 @@ class App extends React.Component {
             <li>
               <Link to='/redux-counter'>Redux Counter Tutorial</Link>
             </li>
+            <li>
+              <Link to='/redux-todos'>Redux Todos Tutorial</Link>
+            </li>
           </ul>
           <hr />
           <Route exact path='/' component={Home} />
           <Route path='/about' component={About} />
           <Route path='/topics' component={Topics} />
           <Route path='/redux-counter' component={ReduxCounterContainer} />
+          <Route path='/redux-todos' component={VisibleTodoList} />
           <Route path='/no-link' component={Hidden} />
         </div>
       </Router>
