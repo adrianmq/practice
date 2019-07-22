@@ -1,13 +1,18 @@
 #
-# Javascript
+
+##
+
+### Javascript
 
 ### Engine
+
     - program that interprets the code, decide's if it's valid and runs it
     - each browser / run-time environment has its own engine (i.e Google V8 https://github.com/v8/v8)
 
     https://codeburst.io/js-essentials-the-javascript-engine-302ff38e8465
 
 ### Scope
+
     - the 'area' you can access a variable from
 
     # lexical scope = physical location of piece of code in its source-code
@@ -16,19 +21,23 @@
     # scope chain = a function can go up to its outer environment (lexically) to search for a variable, it can keep going until it reaches the global environment.
 
 ### Synchronous / Asynchronous
+
     - javascript is synchronous and executes code line by line, starting at the top of the file
     - async = javascript emulates asynchronous behaviour via browser APIs
 
 ### Call Stack (Stack)
+
     - the place for function calls
     - calling a function puches it onto the stack and returning from a function pops it off the stack
     - function calls form a stack of frames. When a function is invoked a frame is created containing the function's arguments and local variables
 
 ### Event / Callback Queue
+
     - events handled after the call stack is empty
     - callback functions are pushed here when using an external browser API
 
 ### Event Loop
+
     - the process of a browser API finishing a function call, pushing a callback function onto the callback queue, and then when the stack is clear it pushes the callback function onto the call stack
 
         while (queue.waitForMessage()) {
@@ -47,18 +56,23 @@
     https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop
 
 ### WEb API
+
     - setTimeout - is a web API implemented by the browser or other environments
 
 ### Execution Context
+
     - environment(~frame) created by JS when a function is addd to the call stack
 
 ### Closure
+
     - function created inside another function, which 'remembers' the environment it was created in when called later
 
 ### Garbage collected
+
     - when a variable in memory is deleted automatically (as it's no longer used, the engine gets rid of it)
 
 ### Hoisting
+
     - the process of moving a value to the top of the code block where it is used, regardless of where it is defined.
     ## Variable
     - all variable declarations are automatically hoisted to the top of a function's scope, as if they were defined at the start of the function
@@ -69,93 +83,203 @@
         - function expressions, where an anonymous function is assigned to a variable, is hoisted in a similar way to variables
 
 ### Callbacks
+
     - functions in JS are first-class objects, meaning they behave the same way as any other value
     - a function that is passed as an argument to another function is known as a callback
 
 ### this
+
     - a variable/keyword created automatically by JS for each execution context
 
 ### Currying
+
     - the process that involves partial application of functions, named after he logician Haskell Curry
 
 ### Web worker
+
     TODO
 
 ### Cross-origin iframe
+
     TODO
 
 ### Memoization
+
     https://en.wikipedia.org/wiki/Memoization
     - the process of caching the result of function calls
 
 ### Package manager
+
     npm
     yarn
 
 ### Bundler: webpack vs parcel
+
     - lets you write modular code and bundle it together into small packages to optimize load time
 
+# Webpack
+
+    - Build front-end js (bundle). Involves building a piece of javascript code and all its dependencies into a single file that can be served as a static javascript and referenced from a html page
+    - Both front-end and back-end
+    - For front-end all dependencies need to be bundled since the js file has to be a stand-alone unit as it will be loaded and run on the user’s browser
+    - For back-end all the dependency libraries are installed in ‘./node_modules’ (npm/yarn  install) during build time, thus there’s no need to include them in the back-end bundle
 
 ### Compiler: Babel
+
     - modern Javascript code that still works in old browsers
 
+#
+
+##
+
+### View / Data serialization
+
+# JSON
+
+- acronym of 'javascript object notation'
+- serialize an object as a string so that it can be transported between services
+
+#
+
+##
 
 ### Client side storage
+
 # Cookies
+
+    - store small (4 to 16kB) amount of data on the client device
+    - the client reads and send them with each request
+    - set validity/expiry time
+    - server sets a cookie using 'Set-Cookie' header
+    - client includes it with future requests using the Cookie request header
     - obsolete, assorted security problems, small amount of data, EU regulation
+
 # Web Storage
+
     - simple syntax for storing and retrieving smaller, data items consisting of name and a corresponding value
     - useful for simple data
     - object-like structures
     - separate storage for each domain
     # sesstionStorage: persists data as long as the browser is open
     # localStorage: long term persistance
+
 # IndexedDB API
+
     - complete database system for storing complex data
+
 # Cache API
+
     - designed for storing HTTP responses to specific requests, storing website assets offline
+
 # Service Worker API
+
     - javascript file registered against a particular origin
     - when registered, it controls pages available at that origin
     - sits between a loaded page and the network and intercepts network requests aimed at that origin
     - support for offline usage
 
+#
 
+# Architectural Patterns
 
-### Architectural Patterns
-# Documentation
+#
+
+## MVVM, 2-way binding [Angular, Vue]
+
+- Model View View-Model
+  - View <= data biding => View-Model <- read, write -> Model
+  - Each DOM node is interested in a certain part of the model (only part of the app state). By binding each element to its responsible part of the model (View-Model layer), it can directly listen to change of (read) / update (write) its part of the model
+  - In context of SPA, we could say Model=App State, V=Html template
+- Advantages:
+  - separation of concerns: business logic (Model) from presentational layer (View)
+  - allows fast model manipulation of data model, which is ideal for CRUD based apps
+- Task based apps, should have read-only / write-only UI-Components; while it is possible to create 2-way binding for each of these components, the excess 'pathways' for mutating the same part of a data model leads to chaos of state management (CQRS pattern is recommended)
+
+## CQRS (Command Query Responsibility Segregation) [Angular Service]
+
+- query (read), command (write) should be done separately
+- Angular service is good example of applying CQRS pattern:
+  - private variables storing the items in question
+  - public getters (query) and setters (command) as separate methods
+
+## Event bus, 1-way binding, middleman like pattern [React]
+
+- react flow: view (emit event) -> state handler (write) -> state / data model (subscribe) -> view (read)
+- components can send messages to the event bus when an event occurs
+- components can subscribe to the event bus for events they concern
+- the event bus will send messages to subscribers whenever it receives one
+- the component is not directly read-write bound to the model, instead it subscribes to part of the model to read and emits to 'state handler' to write rather than writing by itself
+- separated read-write concerns are satisfying in terms of maintainability for simple task based apps, but could be a nightmare for large scale e-commerce apps due to multiple 'state-handling functions' mutating the same piece of state
+
+## Flux pattern [Redux]
+
+- explicit state mutation achieved by the following:
+  - state can only be mutated through dispatcher, instead of arbitrary 'state-handlers'
+  - dispatcher mutates the state only by emitting an action
+  - conclusively, the view mutates a piece of state, only by emitting an action
+- monitoring actions and the information they contain, data mutation of the whole app is under control
+- typical data flow:
+  1. VIEW reads its interested part of the model from store
+  2. User click button, VIEW emits an 'ACTION' with information such as {type: BUTTON_CLICKED}
+  3. This ACTION is then being sent to a place called 'DISPATCHER'
+  4. DISPATCHER will take this action and apply business logic for updating the model in the STORE
+  5. VIEW will update itself if its reading part of the model, is changed
+
+### Resources
+
 https://blog.cloudboost.io/the-state-of-web-applications-3f789a18b810
 
-# MVVM, 2-way binding
-    - Angular, Vue
-    - Model View View-Model
-        - View <= data biding => View-Model <- read, write -> Model
-        - Each DOM node is interested in a certain part of the model (only part of the app state). By binding each element to its responsible part of the model (View-Model layer), it can directly listen to change of (read) / update (write) its part of the model
-        - In context of SPA, we could say Model=App State, V=Html template
-    - Advantages:
-        - separation of concerns: business logic (Model) from presentational layer (View)
-        - allows fast model manipulation of data model, which is ideal for CRUD based apps
-    - Task based apps, should have read-only / write-only UI-Components; while it is possible to create 2-way binding for each of these components, the excess 'pathways' for mutating the same part of a data model leads to chaos of state management (CQRS pattern is recommended)
+#
 
-# CQRS (Command Query Responsibility Segregation)
-    - query (read), command (write) should be done separately
-    - Angular service is good example of applying CQRS pattern:
-        - private variables storing the items in question
-        - public getters (query) and setters (command) as separate methods
+# React
 
-# Event bus, 1-way binding, middleman like pattern
-    - React
-    - components can send messages to the event bus when an event occurs
-    - components can subscribe to the event bus for events they concern
-    - the event bus will send messages to subscribers whenever it receives one
-    - the component is not directly read-write bound to the model, instead it subscribes to part of the model to read and emits to 'state handler' to write rather than writing by itself
-    - 
+#
 
-# Flux pattern
+## Characteristics
 
+'declarative API' - you tell it what the UI should look like
+
+## Component patterns:
+
+### Component APIs:
+
+[render, state, props, context, lifecycle events]
+
+### Container
+
+- does data fetching and then renders its coresponding sub-component
+- are data or logic layer and utilize stateful API's
+- should be a class component, as opposed to functional ones, in order to have access to all stateful API's
+
+### Presentational
+
+- utilize props, render, context (stateless API's)
+- can be syntatically-pretty functional
+
+### HOC
+
+- is a function that takes a component as an argument and returns a new component
+- powerful pattern for providing fetching and data to any number of components
+
+### Render callback
+
+- or knows as render props
+- used to share or reuse component logic
+- provide the luxury of reducing namespace collision and better illustrate where the logic is comming from
+
+## Resources
+
+https://reactjs.org/docs/getting-started.html
+https://medium.com/teamsubchannel/react-component-patterns-e7fb75be7bb0
+
+#
+
+##
 
 ### Redux
+
 # Documentation
+
 https://medium.com/@bretcameron/a-beginners-guide-to-redux-with-react-50309ae09a14
 
     Boilerplate = sections of code that have to be included in many places with little or no alteration
@@ -189,72 +313,73 @@ https://medium.com/@bretcameron/a-beginners-guide-to-redux-with-react-50309ae09a
             App.js
             App.css
 
-    
+# Resources
 
-#
-## CSS
-# Documentation
-https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/How_CSS_works
+https://medium.com/@bretcameron/a-beginners-guide-to-redux-with-react-50309ae09a14
 
-# Details
+# CSS
+
+## Details
+
 - load html -> parse html -> create DOM tree -> display
-        -> load css -> parse css />
-
+  -> load css -> parse css />
 - about DOM
 - external / internal / inline
 - css rule = ruleset = declaration = selector + declaration block ( property + value )
 - css US spelling standard
 - statement types:
-    - rules
-    - at-rules:
-        - @charset + @import (metadata)
-        - @font-face (descriptive information)
-    - nested:
-        - subset of at-rules
-        - @media or @document (conditional information, nested statements)
+  - rules
+  - at-rules:
+    - @charset + @import (metadata)
+    - @font-face (descriptive information)
+  - nested:
+    - subset of at-rules
+    - @media or @document (conditional information, nested statements)
 - shorthand: font, background, padding, border, margin
 - selector matches html elements on the page, associated declarations will be appplied to those elements only
 - selectors:
-    - match multiple elements by including multiple selectors separated by comma
-    - an element may be matched by several selectors, therefore several rules may set a given property multiple times
-    - selector precedence and order of application (cascade algorithm) is defined by following factors:
-        - importance
-            - !important
-            - to override another declaration should be included later with the same specificity
-        - specificity
-            - how specific a selector is and is measured using 4 different values
-                - thousands: inline style
-                - hundreds: ID selector
-                - tens: class selector, attribute selector, or pseudo-class selector
-                - ones: one in this column for each element selector or pseudo-element selector
-            - universal selector (*), combinators (+, >, ~, ' ') and negation pseudo-class (:not) have no effect on specificity
-        - source order
-            - later rule wins over earlier rules
-    - precendece rules apply at property level
-    - inheritance (inherit, initial, unset, revert)
-    - types:
-        - simple: element, class, id
-        - attribute selector:
-            - presence and value: [attr], [attr=val], [attr~=val]
-            - substring value: [attr^=val], [attr$=val], [attr*=val]
-        - pseudo-classes: elements in certain state
-            - :active, :hover, etc.
-            - https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Pseudo-classes_and_pseudo-elements
-        - pseudo-elements: certain position in relation to an element
-            - ::after, ::before, etc.
-        - combinators:
-            - list / descendant / child / adjacent sibling / general sibling
-            - https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Combinators_and_multiple_selectors
-        - mutiple selectors
+  - match multiple elements by including multiple selectors separated by comma
+  - an element may be matched by several selectors, therefore several rules may set a given property multiple times
+  - selector precedence and order of application (cascade algorithm) is defined by following factors:
+    - importance
+      - !important
+      - to override another declaration should be included later with the same specificity
+    - specificity
+      - how specific a selector is and is measured using 4 different values
+        - thousands: inline style
+        - hundreds: ID selector
+        - tens: class selector, attribute selector, or pseudo-class selector
+        - ones: one in this column for each element selector or pseudo-element selector
+      - universal selector (\*), combinators (+, >, ~, ' ') and negation pseudo-class (:not) have no effect on specificity
+    - source order
+      - later rule wins over earlier rules
+  - precendece rules apply at property level
+  - inheritance (inherit, initial, unset, revert)
+  - types:
+    - simple: element, class, id
+    - attribute selector:
+      - presence and value: [attr], [attr=val], [attr~=val]
+      - substring value: [attr^=val], [attr$=val], [attr*=val]
+    - pseudo-classes: elements in certain state
+      - :active, :hover, etc.
+      - https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Pseudo-classes_and_pseudo-elements
+    - pseudo-elements: certain position in relation to an element
+      - ::after, ::before, etc.
+    - combinators:
+      - list / descendant / child / adjacent sibling / general sibling
+      - https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Combinators_and_multiple_selectors
+    - mutiple selectors
 - values:
-    - pixels: absolute units
-    - relative units (font-size or viewport): em, rem
-    - percentages
-    - https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Values_and_units
+  - pixels: absolute units
+  - relative units (font-size or viewport): em, rem
+  - percentages
+  - https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Values_and_units
 - box model: content(width+height) + padding + border + margin
-    - overflow: auto, hidden, visible
+  - overflow: auto, hidden, visible
 - layout: positioning, etc
-    https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Introduction
+  https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Introduction
 
+# Resources
 
-
+https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/How_CSS_works
+https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox
