@@ -1,17 +1,19 @@
-#
+<!-- ### Javascript ###  -->
+<!-- ### Javascript ###  -->
+<!-- ### Javascript ###  -->
 
-##
+# Javascript
 
-### Javascript
+<!-- ### Javascript ###  -->
 
-### Engine
+## Engine
 
     - program that interprets the code, decide's if it's valid and runs it
     - each browser / run-time environment has its own engine (i.e Google V8 https://github.com/v8/v8)
 
     https://codeburst.io/js-essentials-the-javascript-engine-302ff38e8465
 
-### Scope
+## Scope
 
     - the 'area' you can access a variable from
 
@@ -20,23 +22,23 @@
     # global = not inside a function, available anywhere
     # scope chain = a function can go up to its outer environment (lexically) to search for a variable, it can keep going until it reaches the global environment.
 
-### Synchronous / Asynchronous
+## Synchronous / Asynchronous
 
     - javascript is synchronous and executes code line by line, starting at the top of the file
     - async = javascript emulates asynchronous behaviour via browser APIs
 
-### Call Stack (Stack)
+## Call Stack (Stack)
 
     - the place for function calls
     - calling a function puches it onto the stack and returning from a function pops it off the stack
     - function calls form a stack of frames. When a function is invoked a frame is created containing the function's arguments and local variables
 
-### Event / Callback Queue
+## Event / Callback Queue
 
     - events handled after the call stack is empty
     - callback functions are pushed here when using an external browser API
 
-### Event Loop
+## Event Loop
 
     - the process of a browser API finishing a function call, pushing a callback function onto the callback queue, and then when the stack is clear it pushes the callback function onto the call stack
 
@@ -55,23 +57,23 @@
 
     https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop
 
-### WEb API
+## Web API
 
     - setTimeout - is a web API implemented by the browser or other environments
 
-### Execution Context
+## Execution Context
 
     - environment(~frame) created by JS when a function is addd to the call stack
 
-### Closure
+## Closure
 
     - function created inside another function, which 'remembers' the environment it was created in when called later
 
-### Garbage collected
+## Garbage collected
 
     - when a variable in memory is deleted automatically (as it's no longer used, the engine gets rid of it)
 
-### Hoisting
+## Hoisting
 
     - the process of moving a value to the top of the code block where it is used, regardless of where it is defined.
     ## Variable
@@ -82,71 +84,57 @@
         - function declaration => whole functon is hoisted to the top of the function, meaning it can be invoked before it has been defined
         - function expressions, where an anonymous function is assigned to a variable, is hoisted in a similar way to variables
 
-### Callbacks
+## Callbacks
 
     - functions in JS are first-class objects, meaning they behave the same way as any other value
     - a function that is passed as an argument to another function is known as a callback
 
-### this
+## this
 
     - a variable/keyword created automatically by JS for each execution context
 
-### Currying
+## Currying
 
     - the process that involves partial application of functions, named after he logician Haskell Curry
 
-### Web worker
+## Web worker
 
     TODO
 
-### Cross-origin iframe
+## Cross-origin iframe
 
     TODO
 
-### Memoization
+## Memoization
 
     https://en.wikipedia.org/wiki/Memoization
     - the process of caching the result of function calls
 
-### Package manager
+## Package manager [npm, yarn]
 
-    npm
-    yarn
-
-### Bundler: webpack vs parcel
+## Bundler [webpack, parcel, browserify]
 
     - lets you write modular code and bundle it together into small packages to optimize load time
 
-# Webpack
-
+  Webpack
     - Build front-end js (bundle). Involves building a piece of javascript code and all its dependencies into a single file that can be served as a static javascript and referenced from a html page
     - Both front-end and back-end
     - For front-end all dependencies need to be bundled since the js file has to be a stand-alone unit as it will be loaded and run on the user’s browser
     - For back-end all the dependency libraries are installed in ‘./node_modules’ (npm/yarn  install) during build time, thus there’s no need to include them in the back-end bundle
 
-### Compiler: Babel
+## Compiler (Transpiler) [Babel]
 
     - modern Javascript code that still works in old browsers
 
-#
+## View / Data serialization
 
-##
+  JSON
+  - acronym of 'javascript object notation'
+  - serialize an object as a string so that it can be transported between services
 
-### View / Data serialization
+## Client side storage
 
-# JSON
-
-- acronym of 'javascript object notation'
-- serialize an object as a string so that it can be transported between services
-
-#
-
-##
-
-### Client side storage
-
-# Cookies
-
+  Cookies
     - store small (4 to 16kB) amount of data on the client device
     - the client reads and send them with each request
     - set validity/expiry time
@@ -154,8 +142,7 @@
     - client includes it with future requests using the Cookie request header
     - obsolete, assorted security problems, small amount of data, EU regulation
 
-# Web Storage
-
+  Web Storage
     - simple syntax for storing and retrieving smaller, data items consisting of name and a corresponding value
     - useful for simple data
     - object-like structures
@@ -163,26 +150,25 @@
     # sesstionStorage: persists data as long as the browser is open
     # localStorage: long term persistance
 
-# IndexedDB API
+  IndexedDB API
+      - complete database system for storing complex data
 
-    - complete database system for storing complex data
-
-# Cache API
-
+  Cache API
     - designed for storing HTTP responses to specific requests, storing website assets offline
 
-# Service Worker API
+  Service Worker API
+      - javascript file registered against a particular origin
+      - when registered, it controls pages available at that origin
+      - sits between a loaded page and the network and intercepts network requests aimed at that origin
+      - support for offline usage
 
-    - javascript file registered against a particular origin
-    - when registered, it controls pages available at that origin
-    - sits between a loaded page and the network and intercepts network requests aimed at that origin
-    - support for offline usage
-
-#
+<!-- ### Architectural Patterns ###  -->
+<!-- ### Architectural Patterns ###  -->
+<!-- ### Architectural Patterns ###  -->
 
 # Architectural Patterns
 
-#
+<!-- ### Architectural Patterns ###  -->
 
 ## MVVM, 2-way binding [Angular, Vue]
 
@@ -225,101 +211,100 @@
   4. DISPATCHER will take this action and apply business logic for updating the model in the STORE
   5. VIEW will update itself if its reading part of the model, is changed
 
-### Resources
+## Resources
 
 https://blog.cloudboost.io/the-state-of-web-applications-3f789a18b810
 
-#
+<!-- ### React ###  -->
+<!-- ### React ###  -->
+<!-- ### React ###  -->
 
 # React
 
-#
-
-## Characteristics
+<!-- ### React ###  -->
 
 'declarative API' - you tell it what the UI should look like
 
 ## Component patterns:
 
-### Component APIs:
+  Component APIs: [render, state, props, context, lifecycle events]
 
-[render, state, props, context, lifecycle events]
+  Container:
+  - does data fetching and then renders its coresponding sub-component
+  - are data or logic layer and utilize stateful API's
+  - should be a class component, as opposed to functional ones, in order to have access to all stateful API's
 
-### Container
+  Presentational:
+  - utilize props, render, context (stateless API's)
+  - can be syntatically-pretty functional
 
-- does data fetching and then renders its coresponding sub-component
-- are data or logic layer and utilize stateful API's
-- should be a class component, as opposed to functional ones, in order to have access to all stateful API's
+  HOC:
+  - is a function that takes a component as an argument and returns a new component
+  - powerful pattern for providing fetching and data to any number of components
 
-### Presentational
-
-- utilize props, render, context (stateless API's)
-- can be syntatically-pretty functional
-
-### HOC
-
-- is a function that takes a component as an argument and returns a new component
-- powerful pattern for providing fetching and data to any number of components
-
-### Render callback
-
-- or knows as render props
-- used to share or reuse component logic
-- provide the luxury of reducing namespace collision and better illustrate where the logic is comming from
+  Render callback
+  - or knows as render props
+  - used to share or reuse component logic
+  - provide the luxury of reducing namespace collision and better illustrate where the logic is comming from
 
 ## Resources
 
 https://reactjs.org/docs/getting-started.html
 https://medium.com/teamsubchannel/react-component-patterns-e7fb75be7bb0
+https://www.robinwieruch.de/react-fetching-data/
+https://www.robinwieruch.de/react-hooks-fetch-data/
 
-#
+<!-- ### Redux ###  -->
+<!-- ### Redux ###  -->
+<!-- ### Redux ###  -->
 
-##
+# Redux
 
-### Redux
+<!-- ### Redux ###  -->
 
-# Documentation
+  Boilerplate = sections of code that have to be included in many places with little or no alteration
+
+  Payload = the conventional name used for the property that holds tha actual data in a Redux action object.
+      A payload isn't necessary, but it's fairly common to see actions defined like this:
+      ```
+      const ADD_USER = {
+          type: "ADD_USER",
+          payload: {name: "John", age: 45}
+      }
+      ```
+  Middleware = in general, clues together clietn-side and server-side code, allowing (back-end) developers
+      to implement logic upon the request made from the client . In Redux, middleware provides a way to interact with actions that have been dispatched to the store before they reach the store's reducer.
+
+  File structure:
+      src:
+          actions
+              actionTypes.js
+              actionGroup1.js
+              actionGroup2.js
+          components
+              Component1.js
+              Component2.js
+          reducers
+              index.js
+              reducerGroup1.js
+              reducerGroup2.js
+          store.js
+          index.js
+          App.js
+          App.css
+
+## Resources
 
 https://medium.com/@bretcameron/a-beginners-guide-to-redux-with-react-50309ae09a14
-
-    Boilerplate = sections of code that have to be included in many places with little or no alteration
-
-    Payload = the conventional name used for the property that holds tha actual data in a Redux action object.
-        A payload isn't necessary, but it's fairly common to see actions defined like this:
-        ```
-        const ADD_USER = {
-            type: "ADD_USER",
-            payload: {name: "John", age: 45}
-        }
-        ```
-    Middleware = in general, clues together clietn-side and server-side code, allowing (back-end) developers
-        to implement logic upon the request made from the client . In Redux, middleware provides a way to interact with actions that have been dispatched to the store before they reach the store's reducer.
-
-    File structure:
-        src:
-            actions
-                actionTypes.js
-                actionGroup1.js
-                actionGroup2.js
-            components
-                Component1.js
-                Component2.js
-            reducers
-                index.js
-                reducerGroup1.js
-                reducerGroup2.js
-            store.js
-            index.js
-            App.js
-            App.css
-
-# Resources
-
 https://medium.com/@bretcameron/a-beginners-guide-to-redux-with-react-50309ae09a14
+
+<!-- ### CSS ###  -->
+<!-- ### CSS ###  -->
+<!-- ### CSS ###  -->
 
 # CSS
 
-## Details
+<!-- ### CSS ###  -->
 
 - load html -> parse html -> create DOM tree -> display
   -> load css -> parse css />
@@ -379,7 +364,7 @@ https://medium.com/@bretcameron/a-beginners-guide-to-redux-with-react-50309ae09a
 - layout: positioning, etc
   https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Introduction
 
-# Resources
+## Resources
 
 https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/How_CSS_works
 https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox
