@@ -75,7 +75,7 @@ function getCountryCodeForCoord({ latitude, longitude }) {
     });
 }
 
-export function getCountryCodeThroughIpLookUp() {
+function getCountryCodeThroughIpLookUp() {
   const api_url = "http://ip-api.com/json";
 
   return fetch(api_url)

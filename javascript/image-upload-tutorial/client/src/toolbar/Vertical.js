@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { FormattedMessage } from "react-intl";
+import messages from "./messages";
 
 const toolbarStyle = {
   display: "inline-flex",
@@ -12,9 +14,13 @@ class VerticalToolbar extends Component {
   render() {
     return (
       <div style={toolbarStyle}>
-        <button>Top</button>
+        <button>
+          <FormattedMessage {...messages.buttonTop} />
+        </button>
         <div style={{ flex: 1 }} />
-        <button>Bottom</button>
+        <button>
+          <FormattedMessage {...messages.buttonBottom} />
+        </button>
       </div>
     );
   }

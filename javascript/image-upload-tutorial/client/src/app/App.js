@@ -5,6 +5,8 @@ import UploadImage from "./UploadImage";
 import Footer from "./Footer";
 import { default as DockedToolbar } from "../toolbar/Docked";
 import { Localizer, DEFAULT_LANGUAGE } from "../util/Localizer";
+import { LanguageProvider } from "../containers/LanguageProvider/LanguageProvider";
+import { translationMessages } from "../i18n";
 import { loadState, saveState } from "../util/LocalStorage";
 import FadeIn from "../layout/FadeIn";
 import Grid from "../grid/Grid";
@@ -80,16 +82,21 @@ class App extends Component {
           updateLocale={this.updateLocale}
           shouldLocalize={shouldLocalize}
         />
-        <Router {...this.props}>
-          <div className="container">
-            <Notifications />
-            <DockedToolbar />
-            <Route exact path="/" component={UploadImage} />
-            <GridRoute exact path="/grid" component={Grid} />
-            <ListRoute exact path="/list" component={List} />
-            <Footer />
-          </div>
-        </Router>
+        <LanguageProvider
+          messages={translationMessages}
+          locale={this.state.locale}
+        >
+          <Router {...this.props}>
+            <div className="container">
+              <Notifications />
+              <DockedToolbar />
+              <Route exact path="/" component={UploadImage} />
+              <GridRoute exact path="/grid" component={Grid} />
+              <ListRoute exact path="/list" component={List} />
+              <Footer />
+            </div>
+          </Router>
+        </LanguageProvider>
       </React.Fragment>
     );
   }
