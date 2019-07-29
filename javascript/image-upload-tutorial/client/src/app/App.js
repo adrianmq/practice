@@ -11,12 +11,13 @@ import { loadState, saveState } from "../util/LocalStorage";
 import FadeIn from "../layout/FadeIn";
 import Grid from "../grid/Grid";
 import List from "../list/List";
+import Carousel from "../components/Carousel/Carousel";
 import "./App.css";
 
-const FadeInComponent = ({ component: Component, ...rest }) => {
+const FadeInComponent = ({ component: Component, children, ...rest }) => {
   return (
     <FadeIn>
-      <Component {...rest} />
+      <Component {...rest}>{children}</Component>
     </FadeIn>
   );
 };
@@ -43,6 +44,20 @@ const ListRoute = ({ component: Component, ...rest }) => {
           sorters={sorters}
           filters={filters}
         />
+      )}
+    />
+  );
+};
+
+const CarouselRoute = ({ component: Component, ...rest }) => {
+  return (
+    <Route
+      {...rest}
+      render={renderProps => (
+        <FadeInComponent component={Component} {...renderProps}>
+          <div>Content for first panel</div>
+          <div>... and the second panel</div>
+        </FadeInComponent>
       )}
     />
   );
@@ -93,6 +108,12 @@ class App extends Component {
               <Route exact path="/" component={UploadImage} />
               <GridRoute exact path="/grid" component={Grid} />
               <ListRoute exact path="/list" component={List} />
+              <CarouselRoute
+                exact
+                path="/carousel"
+                component={Carousel}
+                style={{ height: "400px", width: "600px" }}
+              />
               <Footer />
             </div>
           </Router>
