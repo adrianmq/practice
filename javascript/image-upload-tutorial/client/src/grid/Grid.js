@@ -1,7 +1,12 @@
 import React, { Component } from "react";
+import { Dropdown } from "semantic-ui-react";
+import Button from "../components/Button/Button";
+import SegmentedButton from "../components/SegmentedButton/SegmentedButton";
 import getData from "./Data";
+import "semantic-ui-css/semantic.min.css";
 
 const { data } = getData();
+const { Divider, Item, Menu } = Dropdown;
 
 class Grid extends Component {
   constructor(props) {
@@ -10,6 +15,14 @@ class Grid extends Component {
     this.state = {};
     this.handleHeaderClick = this.handleHeaderClick.bind(this);
   }
+
+  handleAddUser = () => {
+    console.log("add user");
+  };
+
+  handleRemoveUser = () => {
+    console.log("remove user");
+  };
 
   getSort(dataIndex, sort) {
     return sort && sort.dataIndex === dataIndex ? `(${sort.direction})` : null;
@@ -36,6 +49,26 @@ class Grid extends Component {
 
     return (
       <div style={{ textAlign: "center", marginTop: "500px" }}>
+        <SegmentedButton>
+          <button value="one">One</button>
+          <button value="two">Two</button>
+          <button value="three">Three</button>
+        </SegmentedButton>
+        <Button onClick={this.handleButtonClick}>Initial</Button>
+        <Dropdown
+          text="User Controls"
+          icon="add user"
+          className="icon"
+          floating
+          labeled
+          button
+        >
+          <Menu>
+            <Item onClick={this.handleAddUser}>Add User</Item>
+            <Divider />
+            <Item onClick={this.handleRemoveUser}>Remove User</Item>
+          </Menu>
+        </Dropdown>
         <table
           style={{ margin: "0 auto" }}
           className={`grid ${className ? className : ""}`}
