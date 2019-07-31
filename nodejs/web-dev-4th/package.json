@@ -1,0 +1,16 @@
+{
+  "name": "nodejs-practice",
+  "version": "10.0",
+  "description": "None",
+  "engines": {
+    "npm": ">=5",
+    "node": ">=8.15.1"
+  },
+  "author": "Adrian Matei",
+  "license": "MIT",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2"
+  }
+}

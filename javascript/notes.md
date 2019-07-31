@@ -89,6 +89,11 @@
     - functions in JS are first-class objects, meaning they behave the same way as any other value
     - a function that is passed as an argument to another function is known as a callback
 
+## Classes
+
+    - ES2015
+    - built on existing prototype-based inheritance model
+
 ## this
 
     - a variable/keyword created automatically by JS for each execution context
@@ -116,11 +121,7 @@
 
     - lets you write modular code and bundle it together into small packages to optimize load time
 
-  Webpack
-    - Build front-end js (bundle). Involves building a piece of javascript code and all its dependencies into a single file that can be served as a static javascript and referenced from a html page
-    - Both front-end and back-end
-    - For front-end all dependencies need to be bundled since the js file has to be a stand-alone unit as it will be loaded and run on the user’s browser
-    - For back-end all the dependency libraries are installed in ‘./node_modules’ (npm/yarn  install) during build time, thus there’s no need to include them in the back-end bundle
+Webpack - Build front-end js (bundle). Involves building a piece of javascript code and all its dependencies into a single file that can be served as a static javascript and referenced from a html page - Both front-end and back-end - For front-end all dependencies need to be bundled since the js file has to be a stand-alone unit as it will be loaded and run on the user’s browser - For back-end all the dependency libraries are installed in ‘./node_modules’ (npm/yarn install) during build time, thus there’s no need to include them in the back-end bundle
 
 ## Compiler (Transpiler) [Babel]
 
@@ -128,39 +129,22 @@
 
 ## View / Data serialization
 
-  JSON
-  - acronym of 'javascript object notation'
-  - serialize an object as a string so that it can be transported between services
+JSON
+
+- acronym of 'javascript object notation'
+- serialize an object as a string so that it can be transported between services
 
 ## Client side storage
 
-  Cookies
-    - store small (4 to 16kB) amount of data on the client device
-    - the client reads and send them with each request
-    - set validity/expiry time
-    - server sets a cookie using 'Set-Cookie' header
-    - client includes it with future requests using the Cookie request header
-    - obsolete, assorted security problems, small amount of data, EU regulation
+Cookies - store small (4 to 16kB) amount of data on the client device - the client reads and send them with each request - set validity/expiry time - server sets a cookie using 'Set-Cookie' header - client includes it with future requests using the Cookie request header - obsolete, assorted security problems, small amount of data, EU regulation
 
-  Web Storage
-    - simple syntax for storing and retrieving smaller, data items consisting of name and a corresponding value
-    - useful for simple data
-    - object-like structures
-    - separate storage for each domain
-    # sesstionStorage: persists data as long as the browser is open
-    # localStorage: long term persistance
+Web Storage - simple syntax for storing and retrieving smaller, data items consisting of name and a corresponding value - useful for simple data - object-like structures - separate storage for each domain # sesstionStorage: persists data as long as the browser is open # localStorage: long term persistance
 
-  IndexedDB API
-      - complete database system for storing complex data
+IndexedDB API - complete database system for storing complex data
 
-  Cache API
-    - designed for storing HTTP responses to specific requests, storing website assets offline
+Cache API - designed for storing HTTP responses to specific requests, storing website assets offline
 
-  Service Worker API
-      - javascript file registered against a particular origin
-      - when registered, it controls pages available at that origin
-      - sits between a loaded page and the network and intercepts network requests aimed at that origin
-      - support for offline usage
+Service Worker API - javascript file registered against a particular origin - when registered, it controls pages available at that origin - sits between a loaded page and the network and intercepts network requests aimed at that origin - support for offline usage
 
 <!-- ### Architectural Patterns ###  -->
 <!-- ### Architectural Patterns ###  -->
@@ -227,25 +211,29 @@ https://blog.cloudboost.io/the-state-of-web-applications-3f789a18b810
 
 ## Component patterns:
 
-  Component APIs: [render, state, props, context, lifecycle events]
+Component APIs: [render, state, props, context, lifecycle events]
 
-  Container:
-  - does data fetching and then renders its coresponding sub-component
-  - are data or logic layer and utilize stateful API's
-  - should be a class component, as opposed to functional ones, in order to have access to all stateful API's
+Container:
 
-  Presentational:
-  - utilize props, render, context (stateless API's)
-  - can be syntatically-pretty functional
+- does data fetching and then renders its coresponding sub-component
+- are data or logic layer and utilize stateful API's
+- should be a class component, as opposed to functional ones, in order to have access to all stateful API's
 
-  HOC:
-  - is a function that takes a component as an argument and returns a new component
-  - powerful pattern for providing fetching and data to any number of components
+Presentational:
 
-  Render callback
-  - or knows as render props
-  - used to share or reuse component logic
-  - provide the luxury of reducing namespace collision and better illustrate where the logic is comming from
+- utilize props, render, context (stateless API's)
+- can be syntatically-pretty functional
+
+HOC:
+
+- is a function that takes a component as an argument and returns a new component
+- powerful pattern for providing fetching and data to any number of components
+
+Render callback
+
+- or knows as render props
+- used to share or reuse component logic
+- provide the luxury of reducing namespace collision and better illustrate where the logic is comming from
 
 ## Resources
 
@@ -262,36 +250,31 @@ https://www.robinwieruch.de/react-hooks-fetch-data/
 
 <!-- ### Redux ###  -->
 
-  Boilerplate = sections of code that have to be included in many places with little or no alteration
+Boilerplate = sections of code that have to be included in many places with little or no alteration
 
-  Payload = the conventional name used for the property that holds tha actual data in a Redux action object.
-      A payload isn't necessary, but it's fairly common to see actions defined like this:
-      ```
-      const ADD_USER = {
-          type: "ADD_USER",
-          payload: {name: "John", age: 45}
-      }
-      ```
-  Middleware = in general, clues together clietn-side and server-side code, allowing (back-end) developers
-      to implement logic upon the request made from the client . In Redux, middleware provides a way to interact with actions that have been dispatched to the store before they reach the store's reducer.
+Payload = the conventional name used for the property that holds tha actual data in a Redux action object.
+A payload isn't necessary, but it's fairly common to see actions defined like this:
+`const ADD_USER = { type: "ADD_USER", payload: {name: "John", age: 45} }`
+Middleware = in general, clues together clietn-side and server-side code, allowing (back-end) developers
+to implement logic upon the request made from the client . In Redux, middleware provides a way to interact with actions that have been dispatched to the store before they reach the store's reducer.
 
-  File structure:
-      src:
-          actions
-              actionTypes.js
-              actionGroup1.js
-              actionGroup2.js
-          components
-              Component1.js
-              Component2.js
-          reducers
-              index.js
-              reducerGroup1.js
-              reducerGroup2.js
-          store.js
-          index.js
-          App.js
-          App.css
+File structure:
+src:
+actions
+actionTypes.js
+actionGroup1.js
+actionGroup2.js
+components
+Component1.js
+Component2.js
+reducers
+index.js
+reducerGroup1.js
+reducerGroup2.js
+store.js
+index.js
+App.js
+App.css
 
 ## Resources
 
