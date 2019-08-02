@@ -9,6 +9,7 @@ import { LanguageProvider } from "../containers/LanguageProvider/LanguageProvide
 import { translationMessages } from "../i18n";
 import { loadState, saveState } from "../util/LocalStorage";
 import FadeIn from "../layout/FadeIn";
+import Search from "../search/Search";
 import Grid from "../grid/Grid";
 import List from "../list/List";
 import Carousel from "../components/Carousel/Carousel";
@@ -23,6 +24,19 @@ const FadeInComponent = ({ component: Component, children, ...rest }) => {
 };
 
 const GridRoute = ({ component: Component, ...rest }) => {
+  return (
+    <Route
+      {...rest}
+      render={routeProps => <FadeInComponent component={Component} />}
+    />
+  );
+};
+
+const ToolbarRoute = ({ component: Component, ...rest }) => {
+  return <Route {...rest} render={() => <Component />} />;
+};
+
+const SearchRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
@@ -104,10 +118,11 @@ class App extends Component {
           <Router {...this.props}>
             <div className="container">
               <Notifications />
-              <DockedToolbar />
               <Route exact path="/" component={UploadImage} />
               <GridRoute exact path="/grid" component={Grid} />
               <ListRoute exact path="/list" component={List} />
+              <ToolbarRoute exact path="/toolbar" component={DockedToolbar} />
+              <SearchRoute exact path="/search" component={Search} />
               <CarouselRoute
                 exact
                 path="/carousel"

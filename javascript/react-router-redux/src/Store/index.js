@@ -9,7 +9,7 @@ const persistedState = loadState();
 const store = createStore(
   reducers,
   persistedState,
-  applyMiddleware(...[logger, thunk])
+  applyMiddleware(logger, thunk)
 )
 
 store.subscribe(
