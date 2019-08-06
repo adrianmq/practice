@@ -23,3 +23,7 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# repos
+javascript/react-boilerplate/
+javascript/react-router-redux/.editorconfig
