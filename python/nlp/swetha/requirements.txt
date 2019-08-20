@@ -1,0 +1,7 @@
+lxml
+nltk
+stop_words
+# urllib3
+bs4
+sklearn
+numpy
