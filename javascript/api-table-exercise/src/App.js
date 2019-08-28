@@ -10,6 +10,8 @@ let store = makeStore();
 class App extends Component {
   componentDidMount() {
     this.props.getPosts()
+    this.props.getUsers()
+    this.props.getComments()
   }
 
   render() {
@@ -28,19 +30,19 @@ class App extends Component {
             <tbody>
             {
               this.props.posts
-                ? Object.values(this.props.posts).map((post, i) => {
+                ? Object.values(this.props.posts.data).map((post, i) => {
                   return (
                       <tr key={post.id}>
                         <td>{post.title}</td>
                         <td>{post.body}</td>
                         <td>{
-                          post.userId in this.props.users
-                            ? this.props.users[post.userId]['name']
+                          post.userId in this.props.users.data
+                            ? this.props.users.data[post.userId]['name']
                             : '-'
                         }</td>
                         <td>{
-                          post.id in this.props.commentsByPostId
-                            ? Object.keys(this.props.commentsByPostId[post.id]).length
+                          post.id in this.props.comments.dataByPostId
+                            ? Object.keys(this.props.comments.dataByPostId[post.id]).length
                             : 0
                         }</td>
                       </tr>
@@ -57,26 +59,14 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  posts: state['api']['posts'],
-  commentsByPostId: state['api']['commentsByPostId'],
-  users: state['api']['users']
+  posts: state['posts'],
+  comments: state['comments'],
+  users: state['users']
 })
-
-const mapDispatchToProps = (dispatch) => ({
-  getPosts: () => {
-    return fetch('https://jsonplaceholder.typicode.com/posts')
-      .then(response => response.json())
-      .then(json => dispatch(fetchPosts(json)))
-      .then(json => {
-        fetch('https://jsonplaceholder.typicode.com/users')
-          .then(response => response.json())
-          .then(json => dispatch(fetchUsers(json)))
-
-        fetch('https://jsonplaceholder.typicode.com/comments')
-          .then(response => response.json())
-          .then(json => dispatch(fetchComments(json)))
-      })
-  }
-});
+const mapDispatchToProps = {
+  getPosts: fetchPosts,
+  getUsers: fetchUsers,
+  getComments: fetchComments
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
