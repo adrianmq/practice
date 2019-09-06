@@ -325,3 +325,25 @@ asyncFunc('a param', 'another param', 'more params!')
 // another param
 // more params!
 // done.
+
+
+/*
+  Async chaining using promises
+*/
+console.log('before')
+fetch('https://jsonplaceholder.typicode.com/posts')
+.then(response => { console.log('posts response'); return response.json(); })
+.then(json => { console.log('posts', json); return json; })
+fetch('https://jsonplaceholder.typicode.com/users')
+.then(response => { console.log('users response'); return response.json(); })
+.then(json => console.log('users', json))
+console.log('after')
+
+// Failure
+new Promise((_, reject) => reject(new Error("Fail")))
+.then(value => console.log("Handler 1"))
+.catch(reason => {
+console.log("Caught failure " + reason);
+return "nothing";
+})
+.then(value => console.log("Handler 2", value));

@@ -1,0 +1,8 @@
+[report]
+include =
+    # includes everything in the directory anywhere
+    src/*
+    
+omit =
+    */tests/*
+    setup.py

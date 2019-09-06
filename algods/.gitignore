@@ -1,0 +1,13 @@
+.DS_Store
+*.sublime-*
+intake
+orig
+.cache/
+.ipython/
+.local/
+.jupyter/
+workspace/
+**/__pycache__
+*/.ipynb_checkpoints
+.idea/
+.*_history
