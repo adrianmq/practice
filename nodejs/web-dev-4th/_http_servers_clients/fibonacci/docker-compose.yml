@@ -1,0 +1,27 @@
+version: "2.4"
+services:
+  app:
+    build: .
+    container_name: fibonacci-node
+    restart: "no"
+    ports:
+      - "3000:3000"
+    networks:
+      - "int"
+      - "ext"
+  mongo:
+    container_name: mongo
+    image: mongo
+    volumes:
+      - mongodata:/data/db
+    networks:
+      - "int"
+    ports:
+      - "27017:27017"
+networks:
+  ext:
+    driver: "bridge"
+  int:
+    driver: "bridge"
+volumes:
+  mongodata:
