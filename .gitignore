@@ -27,3 +27,8 @@ yarn-error.log*
 # repos
 javascript/react-boilerplate/
 javascript/react-router-redux/.editorconfig
+
+# java compiled
+**/.idea/*
+**/out/production/*
+**/out/artifacts/*

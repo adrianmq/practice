@@ -210,7 +210,7 @@
 ## Overloading
     - constructor must have class name
     - a class may have multiple versions of its constructor or methods
-    - each constructor and method must have a unique signature(number, type and order of parameters, name)
+    - each constructor and method must have a unique signature (number, type and order of parameters, name)
     - overloaded methods cannot be defined by only changing their return type or access modifiers or both (not part of method signature)
     - widening conversion: invocation with different type args are converted to parameter type
 
@@ -233,6 +233,12 @@
 ## Inheritance
     - a class can be declared to inherit (a.k.a. derive) from another class (use 'extends' keyword)
     - derived class has characteristics of the base class and can add specialization
+      - instances of the derived class can be assigned to base class typed references
+        (this capability allows to perform base class actions without being concerned of the specific type of the instance)
+      - fields hide base class fields with same name (field hiding --> dangerous)
+        (base class reference type, will see only base class fields, for both fields and base class methods)
+        (child class reference type, will see child class fields, though when using base class methods that use base class fields, will use the bases' values)
+      - methods override base class methods with same signature (method overriding)
 
 ## Polymophism
     - compile time polymorphism (static binding or method overloading)
@@ -258,6 +264,8 @@
 ### Object equality
     - equal ... it depends
     - override object class "equals" method and perform comparison based on state
+    - check object is instance of class and perform convertion
+    - make reference equality using super
 
 ### Special reference: 'super' keyword
     - similar to 'this', super is an implicit reference to the current object
@@ -416,7 +424,7 @@
     - Error handling needs to be implicit in application development. The traditional approach of checking error codes/flags is too intrusive
     - Exceptions provide a non-intrusive way to signal errors
     - try/catch/finally provides a structured way to handle exceptions
-    - Catch should be made for more specific type to least specific
+    - Catch should be made for more specific type to least specific (general)
 
 ## The try/catch/finally statement
     - the try block contains "normal" code to execute, which runs to completion unless a exception is thrown
@@ -610,48 +618,130 @@
 # Java Features
 
 ## Platform independent
-  - code can be executed on multiple systems without recompilation
-  - code is compiled to bytecode, to be executed by a virtual machine (JVM)
-  - the JVM interprets bytecode to machine-specific instructions for execution
-  - the JVM implementation is machine-dependent and may differ across platform, but all interpret the same bytecode in asimilar manner
-  - C/C++ compile their code to a host system, which has to be recompiled for separate platforms
+    - code can be executed on multiple systems without recompilation
+    - code is compiled to bytecode, to be executed by a virtual machine (JVM)
+    - the JVM interprets bytecode to machine-specific instructions for execution
+    - the JVM implementation is machine-dependent and may differ across platform, but all interpret the same bytecode in asimilar manner
+    - C/C++ compile their code to a host system, which has to be recompiled for separate platforms
 
 ## Object orientation
-  - emulates real-life state and behavior, which are tied to an object
+    - emulates real-life state and behavior, which are tied to an object
 
 ## Abstraction
-  - allows abstract objects that include only required properties and behavior
+    - allows abstract objects that include only required properties and behavior
 
 ## Encapsulation
-  - throughout classes the state and behavior of an object is encapsulated and protected from unwanted access or manipulation
-  - the level of access and modification can be controlled
+    - throughout classes the state and behavior of an object is encapsulated and protected from unwanted access or manipulation
+    - the level of access and modification can be controlled
 
 ## Inheritance
-  - classes are enabled to inherit other classes and implement interfaces
-  - interfaces can inherit from other
+    - classes are enabled to inherit other classes and implement interfaces
+    - interfaces can inherit from other
 
 ## Polymorphism
-  - java enables instaces of its classes to exhibit multiple behavior for the same method call
+    - java enables instaces of its classes to exhibit multiple behavior for the same method call
 
 ## Type safety
-  - the data type of a variable must be declared before its used
-  - compile-time checks that ensure that a value is not assigned to a variable of wrong type
+    - the data type of a variable must be declared before its used
+    - compile-time checks that ensure that a value is not assigned to a variable of wrong type
 
 ## Automatic memory management
-  - uses garbage collections for automatic memory management, which reclaim memory from objects that are no longer in use. This frees developers from managing the memory themselves and also prevents memory leaks
+    - uses garbage collections for automatic memory management, which reclaim memory from objects that are no longer in use. This frees developers from managing the memory themselves and also prevents memory leaks
 
 ## Multithreading and concurrency
-  - support since its first release
-  - supported by classes and interfaces in its core API
+    - support since its first release
+    - supported by classes and interfaces in its core API
 
 ## Security
-  - multiple built-in security features to control access to resources and program execution
-    - it provides secure class loading and verification ensures execution of legitimate java code
-    - the platform defines multiple APIs, including cryptography and public key infrastructure
-    - programs tha trun under a security manager control access to resources, like file reading through a policy file
-    - enables definition of digital signatures, certificates and key-stores to secure code and file exchanges. Signed code is distributed for execution.
+    - multiple built-in security features to control access to resources and program execution
+      - it provides secure class loading and verification ensures execution of legitimate java code
+      - the platform defines multiple APIs, including cryptography and public key infrastructure
+      - programs tha trun under a security manager control access to resources, like file reading through a policy file
+      - enables definition of digital signatures, certificates and key-stores to secure code and file exchanges. Signed code is distributed for execution.
 
 ### NOT single-threaded
     - java supports multithreading programming with inbuilt classes and interfaces
     - single threads can be created and used, aside Java executes its own process for garbage collection in separate threads
 
+
+
+
+# 03-20 java training - introduction
+## https://app.pluralsight.com/library/courses/modern-java-big-picture/table-of-contents
+- j2ee - prev name for ee
+- jdk = jre, an interpreter/loader (Java), a compiler (javac), an archiver (jar), a documentation generator (Javadoc)
+- portability - JRE (JVM) platform dependent
+- same java compiled byte code can run on different platforms
+- java SE - APIs platform agnostic
+- java EE - APIs: persistance architecture, enterprise java beans, server faces (FE)
+  - war = web archive
+  - ear = enterprise archive
+  - app servers for ee: wildfly, websphere, weblogic, tomcat
+- cloud: 
+  - spring boot (microframeworks)
+- spring:
+  - DI container
+  - integration with data-access tech
+  - integration with jva EE tech
+  - spring webFlux
+- common libraries:
+  - utility
+    - google guava (additional collections, caching, i/o helpers)
+    - apache commons (collections, csv, IO, ...)
+    - apache log4J (structured logging)
+  - distributed systems
+    - netty (high performance networking)
+    - akka (actor model for concurrency, clustering and distribution)
+    - RxJava (reactive programming, async & eventbased systems)
+    - apache camel (ee applications and connectors)
+  - data-access
+    - jdbc drivers + ORMs (Hibernate, EclipseLink) || sql DSLs (jOOQ)
+- data processing:
+  - apache hadoop (googles map-reduce concept) = ditributed system for processing big data (batch)
+  - apache spark (streaming)
+  - DL4J (deep learning)
+  - big data storage: cassandra (nosql written in Java), Neo4J, ElasticSearch
+- unittesting
+  - junit + mockito
+- build tools
+  - repeatable builds
+  - manage multiple modules
+  - manage external dependecies
+  - running tests
+  ex: maven, gradle (groovy scripts, incremental builds, maven default layout, less uniform)
+- ci server with jenkins
+  - build + run tests + analyze code (static code analysis: checkstyle, spotbugs, pmd)
+  - sonarqube to follow code quality
+- alternative jvm languages
+  - groovy (dynamic scripting language, interpreted or compiled, opt-in type system)
+  - scala (oop with functional programming, compiled, extensive type system)
+  - kotlin (seamless Java interop, endorsed by google, also runs in browser)
+
+### fundamentals
+- primitive data types: integer, floating point, character, boolean
+- primitive types are stored by value
+- type conversions:
+  - implicit (done by compiler) or explicit (performed in code with cast operator)
+  - widening or narrowing
+- variable block scope == local scope
+- packages
+  - serve as a namespace for types (provides organization, all lowercase, uniqueness)
+  - reverse domain names convention (com.pluralsight) as part of type name (class, etc)
+- encapsulation = hiding implementation (using access modifiers [accessor/mutator pattern])
+- methods:
+  - exiting: the end is reached, return, error
+  - returns: single value (primitive, object ref, array ref)
+  - this: 
+      - implicit reference to current object (reduces ambiguity)
+      - allows an object to pass itself as a parameter
+  - null:
+      - is a reference literal (represents an uncreated object)
+      - can be assigned to any reference variable
+- object initial state: field initializers, contructors, initialization block
+- object fields receive a 'zero' value by default
+- class fields initializers (simple assignement, equation, reference to others, method call)
+- initialization blocks: shared across all constructors; executed as if the code were placed at the start of each constructor; executed in orther from the top
+- construction order:
+  1. field initialization
+  2. initialization blocks
+  3. constructor
