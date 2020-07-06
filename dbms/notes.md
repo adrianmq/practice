@@ -137,6 +137,12 @@
 - flexibility: add new columns or fields without affecting existing rows or application performance
 - JSON schema validation
 
+
+### Data access patterns
+
+- Active record (entity methods)
+- Data Mapper (repositories)
+
 ### Resources
 
 https://www.xplenty.com/blog/the-sql-vs-nosql-difference/
