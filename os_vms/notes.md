@@ -81,6 +81,19 @@ Networking:
     `docker network create --driver bridge --subnet 172.18.0.0/16 custom-isolated-network`
     `docker network ls`
     `docker inspect <c_name>` # look for networks settings
+- windows, connect between containers:
+    1. on the same network (--net=same), port forwarding: TARGET 1, CLIENT 1/0:
+        a. use container IP address (e.g. "IPAddress": "172.23.0.3")
+        b. use container network gateway IP (e.g. "Gateway": "172.23.0.1")
+        c. use host.docker.internal special DNS name
+    2. on the same network (--net=same), port forwarding: TARGET 0, CLIENT 1:
+        a. use container IP address (e.g. "IPAddress": "172.23.0.3")
+        c. use host.docker.internal special DNS name (DOESN't work, routed to host internal IP)
+    3. on different networks, without port-forwarding
+        a. ??? // no solution found yet
+    4. on different networks, with ports forwarded to host
+        a. use container network gateway IP (e.g. "Gateway": "172.23.0.1")
+        b. use host.docker.internal special DNS name
 
 Storage:
 - /var/lib/docker [containers, image, volumes]
