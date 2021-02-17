@@ -23,8 +23,12 @@
 - once the current task is complete, another one is picked from the tasks (macrotaks) queue (eg. timer callback)
 
 
+# JSNSD exam
+
+## Web protocols
+
+
+
 # References
 https://blog.risingstack.com/node-js-at-scale-understanding-node-js-event-loop/
 https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/ (js)
-
-
