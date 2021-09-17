@@ -244,6 +244,10 @@
     - compile time polymorphism (static binding or method overloading)
     - Runtime polymorphism (dynamic binding or method overriding)
 
+## Polymophism
+    - compile time polymorphism (static binding or method overloading)
+    - Runtime polymorphism (dynamic binding or method overriding)
+
 ### Member hiding and overriding
     - can be assigned to base class typed references
     - fields hide base class fields with same name
